@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AIMed Hack 2026 | SPARK Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --orange:     #EA580C;
+  --orange-lt:  #FB923C;
+  --orange-dim: rgba(234,88,12,0.12);
+  --orange-bdr: rgba(234,88,12,0.3);
+  --black:      #0f0f0f;
+  --black2:     #1a1a1a;
+  --black3:     #242424;
+  --gray-800:   #333333;
+  --gray-600:   #666666;
+  --gray-400:   #999999;
+  --gray-200:   #e0e0e0;
+  --gray-100:   #f2f2f2;
+  --gray-50:    #f8f8f8;
+  --white:      #ffffff;
+  --sans:  'DM Sans', sans-serif;
+  --mono:  'DM Mono', monospace;
+  --display: 'Playfair Display', serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--white);color:var(--black);line-height:1.7;font-size:15px;}
+
+/* HERO — matches footer style */
+.hero{background:var(--black);padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero-inner{max-width:720px;margin:0 auto;position:relative;}
+.hero-spark{font-family:var(--sans);font-size:clamp(18px,2.5vw,26px);font-weight:700;color:var(--white);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1rem;border-bottom:2px solid var(--orange);display:inline-block;padding-bottom:6px;}
+.hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap;}
+.pill{font-family:var(--mono);font-size:10px;font-weight:500;padding:4px 12px;border-radius:2px;text-transform:uppercase;letter-spacing:0.1em;}
+.pill-orange{background:rgba(234,88,12,0.18);color:var(--orange-lt);border:1px solid rgba(234,88,12,0.35);}
+.pill-white{background:rgba(255,255,255,0.12);color:var(--white);border:1px solid rgba(255,255,255,0.35);}
+.hero-title{font-family:var(--display);font-size:clamp(40px,6vw,66px);font-weight:800;color:var(--white);line-height:1.08;letter-spacing:-0.01em;margin-bottom:0.5rem;}
+.hero-title .accent{color:var(--orange);}
+.hero-subtitle{font-size:18px;color:rgba(255,255,255,0.5);margin-bottom:0.3rem;}
+.hero-tagline{font-size:15px;color:rgba(255,255,255,0.28);font-style:italic;margin-bottom:2rem;}
+.hero-dates{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.date-chip{font-family:var(--mono);font-size:11px;padding:5px 14px;border-radius:2px;border:1px solid rgba(255,255,255,0.35);color:var(--white);background:rgba(255,255,255,0.1);}
+
+/* STICKY NAV */
+.nav-wrap{position:sticky;top:0;z-index:100;background:var(--black2);border-bottom:2px solid var(--orange);box-shadow:0 2px 20px rgba(0,0,0,0.3);}
+.nav{display:flex;overflow-x:auto;padding:0 1.5rem;-ms-overflow-style:none;scrollbar-width:none;justify-content:center;}
+.nav::-webkit-scrollbar{display:none;}
+.nav a{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:14px 18px;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 0.2s,border-color 0.2s;}
+.nav a:hover{color:var(--white);}
+.nav a.active{color:var(--orange);border-bottom-color:var(--orange);}
+
+/* SECTIONS */
+.section{padding:3rem 2rem;border-bottom:1px solid var(--gray-200);}
+.section.light{background:var(--gray-50);}
+.section-inner{max-width:1000px;margin:0 auto;}
+.section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:2rem;}
+.section-num{font-family:var(--mono);font-size:11px;color:var(--orange);font-weight:500;}
+.section-title{font-size:22px;font-weight:700;color:var(--black);}
+.section-line{flex:1;height:1px;background:var(--gray-200);}
+
+/* TZ TABS */
+.tz-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;}
+.tz-tab{font-family:var(--mono);font-size:11px;font-weight:500;padding:7px 16px;border-radius:2px;border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-600);cursor:pointer;transition:all 0.15s;letter-spacing:0.06em;text-transform:uppercase;}
+.tz-tab:hover{border-color:var(--orange);color:var(--orange);}
+.tz-tab.active{background:var(--orange);border-color:var(--orange);color:var(--white);}
+
+/* SCHEDULE CARD */
+.schedule-card{background:var(--white);border:1px solid var(--gray-200);border-radius:6px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.schedule-banner{background:var(--black2);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.banner-name{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;}
+.banner-live{font-size:12px;color:rgba(255,255,255,0.5);}
+.banner-live strong{color:var(--white);}
+.sched-table{width:100%;border-collapse:collapse;font-size:14px;}
+.sched-table thead{background:var(--gray-100);}
+.sched-table th{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--gray-600);padding:10px 16px;text-align:left;border-bottom:2px solid var(--gray-200);letter-spacing:0.08em;text-transform:uppercase;}
+.sched-table td{padding:11px 16px;border-bottom:1px solid var(--gray-100);vertical-align:middle;}
+.sched-table tr:last-child td{border-bottom:none;}
+.sched-table tr:hover td{background:var(--gray-50);}
+.t-time{font-family:var(--mono);font-size:12px;color:var(--gray-600);white-space:nowrap;width:135px;}
+.t-session{font-size:14px;font-weight:600;color:var(--black);}
+.t-session a{color:var(--black);text-decoration:none;border-bottom:1.5px solid var(--orange-bdr);transition:color 0.15s,border-color 0.15s;}
+.t-session a:hover{color:var(--orange);border-bottom-color:var(--orange);}
+.t-session .live-link{color:var(--orange);border-bottom:1.5px dashed var(--orange);}
+.t-session .live-link:hover{color:var(--orange-lt);border-bottom-color:var(--orange-lt);}
+.t-speaker{font-size:13px;color:var(--gray-600);font-style:italic;margin-top:2px;}
+.row-break td{background:#fafafa;}
+.row-live td{background:#fff7f2;}
+
+/* TAGS */
+.tag{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;font-weight:500;padding:3px 9px;border-radius:2px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid;}
+.tag-break{color:var(--gray-600);border-color:var(--gray-200);background:var(--gray-100);}
+.tag-seminar{color:#1a1a1a;border-color:#d0d0d0;background:#f0f0f0;}
+.tag-live{color:var(--orange);border-color:rgba(234,88,12,0.4);background:rgba(234,88,12,0.08);}
+.tag-hack{color:#7c4d00;border-color:#ffd180;background:#fff8e1;}
+.tag-ubuntu{color:#1a237e;border-color:#c5cae9;background:#e8eaf6;}
+.tag-umoja{color:#b71c1c;border-color:#ffcdd2;background:#ffebee;}
+.tag-capstone{color:var(--white);border-color:var(--orange);background:var(--orange);}
+
+/* DAY TABS */
+.day-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;}
+.day-tab{font-size:12px;font-weight:600;padding:7px 18px;border-radius:2px;border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-600);cursor:pointer;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.04em;}
+.day-tab:hover{border-color:var(--orange);color:var(--orange);}
+.day-tab.active{background:var(--black);border-color:var(--black);color:var(--white);}
+
+/* DELIVERABLE CARDS */
+.del-card{background:var(--white);border:1px solid var(--gray-200);border-radius:6px;padding:1.5rem;max-width:720px;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.del-header{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--gray-200);}
+.del-badge{font-family:var(--mono);font-size:10px;font-weight:500;padding:5px 12px;border-radius:2px;background:var(--orange);color:var(--white);letter-spacing:0.1em;text-transform:uppercase;}
+.del-title{font-size:17px;font-weight:700;color:var(--black);}
+.del-label{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--orange);letter-spacing:0.1em;text-transform:uppercase;margin:1rem 0 0.5rem;padding-bottom:4px;border-bottom:1px solid rgba(234,88,12,0.15);}
+.del-list{padding-left:1.1rem;}
+.del-list li{font-size:14px;color:var(--gray-800);margin-bottom:7px;line-height:1.7;}
+.del-list li::marker{color:var(--orange);}
+.submit-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.25rem;padding:11px 24px;background:var(--orange);color:var(--white);border-radius:3px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.02em;transition:background 0.2s;}
+.submit-btn:hover{background:#c2410c;}
+.submit-btn svg{width:15px;height:15px;}
+
+/* CAPSTONE */
+.cap-card{background:var(--white);border:1px solid var(--gray-200);border-radius:6px;overflow:hidden;max-width:720px;}
+.cap-header{background:var(--black);padding:1.25rem 1.5rem;}
+.cap-header h3{font-family:var(--display);font-size:20px;color:var(--white);margin-bottom:4px;}
+.cap-header p{font-size:13px;color:rgba(255,255,255,0.45);}
+.cap-body{padding:1.5rem;}
+.cap-body p{font-size:14px;color:var(--gray-800);line-height:1.7;margin-bottom:1rem;}
+.cap-tags{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--black);padding:2.5rem 2rem;text-align:center;}
+.footer-logo{font-family:var(--display);font-size:22px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.footer-logo span{color:var(--orange);}
+.footer-sub{font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:1.25rem;}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.footer-links a{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+
+/* ── TABLET (max 768px) ── */
+@media(max-width:768px){
+  .hero{padding:3rem 1.25rem 2.5rem;}
+  .hero-title{font-size:clamp(32px,6vw,48px);}
+  .hero-spark{font-size:18px;letter-spacing:0.12em;}
+  .section{padding:2.25rem 1.25rem;}
+  .section-title{font-size:20px;}
+  .nav a{padding:12px 14px;font-size:12px;}
+  .tz-tabs{gap:5px;}
+  .tz-tab{font-size:10px;padding:6px 12px;}
+  .day-tabs{gap:5px;}
+  .day-tab{font-size:11px;padding:6px 14px;}
+  .schedule-banner{flex-direction:column;gap:4px;padding:10px 14px;}
+  .banner-name{font-size:11px;}
+  .banner-live{font-size:11px;}
+  .sched-table{font-size:13px;}
+  .sched-table th{padding:8px 12px;font-size:10px;}
+  .sched-table td{padding:10px 12px;}
+  .t-time{width:110px;font-size:12px;}
+  .del-card{padding:1.25rem;}
+  .del-title{font-size:15px;}
+  .del-list li{font-size:13px;}
+  .cap-card{max-width:100%;}
+  .resources-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+}
+
+/* ── MOBILE (max 480px) ── */
+@media(max-width:480px){
+  .hero{padding:2.5rem 1rem 2rem;}
+  .hero-spark{font-size:15px;letter-spacing:0.1em;}
+  .hero-title{font-size:clamp(28px,8vw,40px);}
+  .hero-subtitle{font-size:15px;}
+  .hero-tagline{font-size:13px;}
+  .hero-dates{gap:6px;}
+  .date-chip{font-size:10px;padding:4px 10px;}
+  .hero-eyebrow{gap:6px;}
+  .pill{font-size:9px;padding:3px 10px;}
+
+  .nav{padding:0 0.75rem;}
+  .nav a{padding:11px 10px;font-size:11px;letter-spacing:0.04em;}
+
+  .section{padding:1.75rem 1rem;}
+  .section-header{gap:10px;margin-bottom:1.5rem;}
+  .section-title{font-size:18px;}
+
+  .tz-tabs{gap:4px;}
+  .tz-tab{font-size:10px;padding:6px 10px;letter-spacing:0.03em;}
+  .day-tabs{gap:4px;}
+  .day-tab{font-size:11px;padding:6px 12px;}
+
+  .schedule-banner{flex-direction:column;gap:4px;padding:8px 12px;}
+  .banner-name{font-size:10px;}
+  .banner-live{font-size:11px;}
+
+  /* Make schedule table scroll horizontally on very small screens */
+  .schedule-card{overflow-x:auto;}
+  .sched-table{font-size:12px;min-width:480px;}
+  .sched-table th{padding:7px 10px;font-size:9px;}
+  .sched-table td{padding:9px 10px;}
+  .t-time{width:90px;font-size:11px;white-space:nowrap;}
+  .t-session{font-size:12px;}
+  .t-speaker{font-size:11px;}
+  .tag{font-size:9px;padding:2px 7px;}
+
+  .del-card{padding:1rem;}
+  .del-header{flex-direction:column;align-items:flex-start;gap:6px;}
+  .del-badge{font-size:9px;padding:4px 10px;}
+  .del-title{font-size:14px;}
+  .del-label{font-size:9px;}
+  .del-list li{font-size:13px;}
+  .submit-btn{font-size:13px;padding:10px 18px;width:100%;justify-content:center;margin-top:1rem;}
+
+  .cap-header h3{font-size:17px;}
+  .cap-header p{font-size:12px;}
+  .cap-body p{font-size:13px;}
+
+  .resources-grid{grid-template-columns:1fr;}
+  .res-card{padding:1rem;}
+  .res-title{font-size:13px;}
+  .res-desc{font-size:12px;}
+
+  footer{padding:2rem 1rem;}
+  .footer-logo{font-size:18px;}
+  .footer-sub{font-size:12px;}
+  .footer-links{gap:14px;}
+  .footer-links a{font-size:10px;}
+}
+
+/* ── VERY SMALL (max 360px) ── */
+@media(max-width:360px){
+  .hero-title{font-size:26px;}
+  .tz-tab{font-size:9px;padding:5px 8px;}
+  .day-tab{font-size:10px;padding:5px 10px;}
+  .nav a{padding:10px 8px;font-size:10px;}
+  .sched-table{min-width:420px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-spark">SPARK Academy 2026</p>
+    <div class="hero-eyebrow">
+      <span class="pill pill-white">Hackathon</span>
+      <span class="pill pill-white">Capstone Week</span>
+    </div>
+    <h1 class="hero-title"><span class="accent">AIMed</span> Hack 2026</h1>
+    <p class="hero-subtitle">Capstone Project Week · 11 to 15 May 2026</p>
+    <p class="hero-tagline">Building AI capacity for medical imaging across Africa</p>
+    <div class="hero-dates">
+      <span class="date-chip">Mon 11 May</span>
+      <span class="date-chip">Tue 12 May</span>
+      <span class="date-chip">Wed 13 May</span>
+      <span class="date-chip">Thu 14 May</span>
+      <span class="date-chip">Fri 15 May</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="#schedule" class="active" onclick="setNav(this)">Schedule</a>
+    <a href="#deliverables" onclick="setNav(this)">Daily Deliverables</a>
+    <a href="#capstone" onclick="setNav(this)">Capstone</a>
+  </nav>
+</div>
+
+<!-- SCHEDULE -->
+<div class="section" id="schedule">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Weekly Schedule</span>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="tz-tabs">
+      <button class="tz-tab active" onclick="selectTZ(0,this)">GMT · UTC+0</button>
+      <button class="tz-tab" onclick="selectTZ(1,this)">WAT · UTC+1</button>
+      <button class="tz-tab" onclick="selectTZ(2,this)">CAT · UTC+2</button>
+      <button class="tz-tab" onclick="selectTZ(3,this)">EAT · UTC+3</button>
+      <button class="tz-tab" onclick="selectTZ(4,this)">NPT · UTC+5:45</button>
+    </div>
+
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="showDay('mon',this)">Mon 11</button>
+      <button class="day-tab" onclick="showDay('tue',this)">Tue 12</button>
+      <button class="day-tab" onclick="showDay('wed',this)">Wed 13</button>
+      <button class="day-tab" onclick="showDay('thu',this)">Thu 14</button>
+      <button class="day-tab" onclick="showDay('fri',this)">Fri 15</button>
+    </div>
+
+    <div class="schedule-card">
+      <div class="schedule-banner">
+        <span class="banner-name" id="tz-banner-name">Greenwich Mean Time (GMT, UTC+0)</span>
+        <span class="banner-live">Live Session: <strong id="tz-live-time">8:00 AM GMT</strong> · all timezones join simultaneously</span>
+      </div>
+
+      <!-- SCHEDULE DATA: tz index 0-4, days mon/tue/wed/thu/fri -->
+      <!-- Sessions: clickable for seminars/umoja/live; plain for breaks/hacks/ubuntu -->
+
+      <!-- Helper macros encoded inline per slot -->
+      <!-- GMT MON --><div id="sched-0-mon">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-live"><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="mon">&#x1F534; Live Session · Grokking nnU-Net for Glioma Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" data-recorded="mon">Intro to Africa-BraTS Challenge and Dataset</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode · Mid-program Evaluation</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="mon">Bioinformatics and Radiomics of Early Detection</a></div><div class="t-speaker">Mercy Asiedu, William Wasswa</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- GMT TUE --><div id="sched-0-tue" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-live"><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="tue">&#x1F534; Live Session · Uncertainty-Aware Breast Tumor Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" data-recorded="tue">Image Processing and Analysis of Brain Tumours</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="tue">Neuroradiology of Gliomas</a></div><div class="t-speaker">Prof. Peter Hastreiter</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- GMT WED --><div id="sched-0-wed" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-live"><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="wed">&#x1F534; Live Session · SharpXR: Structure-Aware Denoising for Pediatric Chest X-Rays</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" data-recorded="wed">AI Application to Neuroradiology and Neuro-oncology</a></div><div class="t-speaker">Dr. Jeff Rudie · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="wed">How to Write MICCAI Papers</a></div><div class="t-speaker">Navodini Wijethilake, Sharib Ali, Esther Puyol</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- GMT THU --><div id="sched-0-thu" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-live"><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" data-recorded="thu">Imaging Physics and Radiobiology of Gliomas</a></div><div class="t-speaker">Esin · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="thu">Low-cost Method Deployment</a></div><div class="t-speaker">Ayomide Oladele</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- GMT FRI --><div id="sched-0-fri" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-live"><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="fri">State of AI in Brain Tumour</a></div><div class="t-speaker">Dr. Evan Calabrese</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Capstone Project Presentations</div></td><td></td><td><span class="tag tag-capstone">Capstone</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Closing Plenary</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- WAT MON --><div id="sched-1-mon" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="mon">Intro to Africa-BraTS Challenge and Dataset</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-live"><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="mon">&#x1F534; Live Session · Grokking nnU-Net for Glioma Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode · Mid-program Evaluation</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="mon">Bioinformatics and Radiomics of Early Detection</a></div><div class="t-speaker">Mercy Asiedu, William Wasswa</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-1-tue" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="tue">Image Processing and Analysis of Brain Tumours</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-live"><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="tue">&#x1F534; Live Session · Uncertainty-Aware Breast Tumor Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="tue">Neuroradiology of Gliomas</a></div><div class="t-speaker">Prof. Peter Hastreiter</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-1-wed" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="wed">AI Application to Neuroradiology and Neuro-oncology</a></div><div class="t-speaker">Dr. Jeff Rudie · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-live"><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="wed">&#x1F534; Live Session · SharpXR: Structure-Aware Denoising for Pediatric Chest X-Rays</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="wed">How to Write MICCAI Papers</a></div><div class="t-speaker">Navodini Wijethilake, Sharib Ali, Esther Puyol</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-1-thu" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="thu">Imaging Physics and Radiobiology of Gliomas</a></div><div class="t-speaker">Esin · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr class="row-live"><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="thu">Low-cost Method Deployment</a></div><div class="t-speaker">Ayomide Oladele</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-1-fri" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="fri">State of AI in Brain Tumour</a></div><div class="t-speaker">Dr. Evan Calabrese</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Capstone Project Presentations</div></td><td></td><td><span class="tag tag-capstone">Capstone</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Closing Plenary</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- CAT MON --><div id="sched-2-mon" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="mon">Intro to Africa-BraTS Challenge and Dataset</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="mon">&#x1F534; Live Session · Grokking nnU-Net for Glioma Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode · Mid-program Evaluation</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="mon">Bioinformatics and Radiomics of Early Detection</a></div><div class="t-speaker">Mercy Asiedu, William Wasswa</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-2-tue" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="tue">Image Processing and Analysis of Brain Tumours</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="tue">&#x1F534; Live Session · Uncertainty-Aware Breast Tumor Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="tue">Neuroradiology of Gliomas</a></div><div class="t-speaker">Prof. Peter Hastreiter</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-2-wed" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="wed">AI Application to Neuroradiology and Neuro-oncology</a></div><div class="t-speaker">Dr. Jeff Rudie · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="wed">&#x1F534; Live Session · SharpXR: Structure-Aware Denoising for Pediatric Chest X-Rays</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="wed">How to Write MICCAI Papers</a></div><div class="t-speaker">Navodini Wijethilake, Sharib Ali, Esther Puyol</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-2-thu" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="thu">Imaging Physics and Radiobiology of Gliomas</a></div><div class="t-speaker">Esin · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="thu">Low-cost Method Deployment</a></div><div class="t-speaker">Ayomide Oladele</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-2-fri" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">9:00 · 10:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">10:00 · 11:00 AM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="fri">State of AI in Brain Tumour</a></div><div class="t-speaker">Dr. Evan Calabrese</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Capstone Project Presentations</div></td><td></td><td><span class="tag tag-capstone">Capstone</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Closing Plenary</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- EAT MON --><div id="sched-3-mon" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="mon">Intro to Africa-BraTS Challenge and Dataset</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="mon">&#x1F534; Live Session · Grokking nnU-Net for Glioma Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode · Mid-program Evaluation</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="mon">Bioinformatics and Radiomics of Early Detection</a></div><div class="t-speaker">Mercy Asiedu, William Wasswa</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-3-tue" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="tue">Image Processing and Analysis of Brain Tumours</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="tue">&#x1F534; Live Session · Uncertainty-Aware Breast Tumor Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="tue">Neuroradiology of Gliomas</a></div><div class="t-speaker">Prof. Peter Hastreiter</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-3-wed" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="wed">AI Application to Neuroradiology and Neuro-oncology</a></div><div class="t-speaker">Dr. Jeff Rudie · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="wed">&#x1F534; Live Session · SharpXR: Structure-Aware Denoising for Pediatric Chest X-Rays</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="wed">How to Write MICCAI Papers</a></div><div class="t-speaker">Navodini Wijethilake, Sharib Ali, Esther Puyol</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-3-thu" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="thu">Imaging Physics and Radiobiology of Gliomas</a></div><div class="t-speaker">Esin · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="thu">Low-cost Method Deployment</a></div><div class="t-speaker">Ayomide Oladele</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-3-fri" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">11:00 AM · 12:00 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">12:00 · 1:00 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">1:00 · 2:30 PM</td><td><div class="t-session">Team Exercise, Recode</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">2:30 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:00 · 4:00 PM</td><td><div class="t-session"><a href="#" data-umoja="fri">State of AI in Brain Tumour</a></div><div class="t-speaker">Dr. Evan Calabrese</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:00 · 5:00 PM</td><td><div class="t-session">Capstone Project Presentations</div></td><td></td><td><span class="tag tag-capstone">Capstone</span></td></tr>
+<tr class="row-break"><td class="t-time">5:00 PM</td><td><div class="t-session">Closing Plenary</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+      <!-- NPT MON --><div id="sched-4-mon" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="mon">Intro to Africa-BraTS Challenge and Dataset</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">11:00 AM · 1:45 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">1:45 · 2:45 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="mon">&#x1F534; Live Session · Grokking nnU-Net for Glioma Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">2:45 · 3:15 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-break"><td class="t-time">3:15 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:30 · 4:30 PM</td><td><div class="t-session"><a href="#" data-umoja="mon">Bioinformatics and Radiomics of Early Detection</a></div><div class="t-speaker">Mercy Asiedu, William Wasswa</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:30 · 5:30 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:30 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-4-tue" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="tue">Image Processing and Analysis of Brain Tumours</a></div><div class="t-speaker">Dr. Maruf Adewole · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">11:00 AM · 1:45 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">1:45 · 2:45 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="tue">&#x1F534; Live Session · Uncertainty-Aware Breast Tumor Segmentation</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">2:45 · 3:15 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-break"><td class="t-time">3:15 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:30 · 4:30 PM</td><td><div class="t-session"><a href="#" data-umoja="tue">Neuroradiology of Gliomas</a></div><div class="t-speaker">Prof. Peter Hastreiter</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:30 · 5:30 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:30 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-4-wed" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="wed">AI Application to Neuroradiology and Neuro-oncology</a></div><div class="t-speaker">Dr. Jeff Rudie · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">11:00 AM · 1:45 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">1:45 · 2:45 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="wed">&#x1F534; Live Session · SharpXR: Structure-Aware Denoising for Pediatric Chest X-Rays</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">2:45 · 3:15 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-break"><td class="t-time">3:15 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:30 · 4:30 PM</td><td><div class="t-session"><a href="#" data-umoja="wed">How to Write MICCAI Papers</a></div><div class="t-speaker">Navodini Wijethilake, Sharib Ali, Esther Puyol</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:30 · 5:30 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:30 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-4-thu" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session"><a href="#" data-recorded="thu">Imaging Physics and Radiobiology of Gliomas</a></div><div class="t-speaker">Esin · Recorded</div></td><td></td><td><span class="tag tag-seminar">AM Seminar</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">11:00 AM · 1:45 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">1:45 · 2:45 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">2:45 · 3:15 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-break"><td class="t-time">3:15 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:30 · 4:30 PM</td><td><div class="t-session"><a href="#" data-umoja="thu">Low-cost Method Deployment</a></div><div class="t-speaker">Ayomide Oladele</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:30 · 5:30 PM</td><td><div class="t-session">Ubuntu</div></td><td></td><td><span class="tag tag-ubuntu">Ubuntu</span></td></tr>
+<tr class="row-break"><td class="t-time">5:30 PM</td><td><div class="t-session">Adjourn</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+      <div id="sched-4-fri" style="display:none">
+<table class="sched-table"><thead><tr><th>Time</th><th>Session</th><th>Speaker</th><th>Type</th></tr></thead><tbody>
+<tr class="row-break"><td class="t-time">7:30 AM</td><td><div class="t-session">Morning Coffee</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">8:00 · 9:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">9:00 · 11:00 AM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr><td class="t-time">11:00 AM · 1:45 PM</td><td><div class="t-session">Code Hack</div></td><td></td><td><span class="tag tag-hack">Code Hack</span></td></tr>
+<tr class="row-live"><td class="t-time">1:45 · 2:45 PM</td><td><div class="t-session"><a href="#" class="live-link" data-live="thu">&#x1F534; Live Session</a></div></td><td></td><td><span class="tag tag-live">Live</span></td></tr>
+<tr class="row-break"><td class="t-time">2:45 · 3:15 PM</td><td><div class="t-session">Lunch Break</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr class="row-break"><td class="t-time">3:15 PM</td><td><div class="t-session">Afternoon Tea / Team Photos</div></td><td></td><td><span class="tag tag-break">Break</span></td></tr>
+<tr><td class="t-time">3:30 · 4:30 PM</td><td><div class="t-session"><a href="#" data-umoja="fri">State of AI in Brain Tumour</a></div><div class="t-speaker">Dr. Evan Calabrese</div></td><td></td><td><span class="tag tag-umoja">Umoja</span></td></tr>
+<tr><td class="t-time">4:30 · 5:30 PM</td><td><div class="t-session">Capstone Project Presentations</div></td><td></td><td><span class="tag tag-capstone">Capstone</span></td></tr>
+<tr class="row-break"><td class="t-time">5:30 PM</td><td><div class="t-session">Closing Plenary</div></td><td></td><td><span class="tag tag-break">End</span></td></tr>
+</tbody></table>
+</div>
+
+    </div><!-- end schedule-card -->
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="section light" id="deliverables">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Daily Deliverables</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="showDel('mon',this)">Mon 11</button>
+      <button class="day-tab" onclick="showDel('tue',this)">Tue 12</button>
+      <button class="day-tab" onclick="showDel('wed',this)">Wed 13</button>
+      <button class="day-tab" onclick="showDel('thu',this)">Thu 14</button>
+      <button class="day-tab" onclick="showDel('fri',this)">Fri 15</button>
+    </div>
+
+    <div id="del-mon" class="del-card">
+      <div class="del-header"><span class="del-badge">Monday</span><span class="del-title">Project Planning, Dataset Review, and Model Selection</span></div>
+      <div class="del-label">Tasks</div>
+      <ul class="del-list">
+        <li>Review the assigned project brief, dataset description, clinical motivation, and project objectives.</li>
+        <li>Review the recommended method papers and GitHub repositories relevant to your project type. These may include models for classification, segmentation, object detection, image reconstruction, uncertainty estimation, explainability, or generative enhancement.</li>
+        <li>Choose an initial baseline model or workflow appropriate for your project. Examples include CNNs, U-Net, nnU-Net, UNETR, SwinUNETR, YOLO/Faster R-CNN, Vision Transformers, reconstruction networks, uncertainty-aware models, or saliency/explainability pipelines.</li>
+        <li>Review available starter code in Kaggle, Colab, GitHub, or the assigned compute environment.</li>
+      </ul>
+      <div class="del-label">Deliverable · 1-page report</div>
+      <ul class="del-list">
+        <li>Project title and clinical/research motivation</li>
+        <li>Dataset and label structure</li>
+        <li>Chosen model or baseline workflow</li>
+        <li>Model architecture or pipeline summary, preferably in a table</li>
+        <li>Novelty or rationale for the selected method</li>
+        <li>Expected training parameters and optimization approach</li>
+        <li>Anticipated implementation challenges</li>
+      </ul>
+      <a data-form="form-mon" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Monday Report</a>
+      <div class="del-label" style="margin-top:1rem;">Mid-program Evaluation</div>
+      <p style="font-size:13px;color:var(--gray-600);margin-bottom:0.75rem;">Complete the mid-program evaluation survey if requested by the organising team.</p>
+      <a href="#" class="submit-btn" style="background:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg data-form="survey-mid-program">Mid-program Evaluation Survey</a>
+    </div>
+
+    <div id="del-tue" class="del-card" style="display:none">
+      <div class="del-header"><span class="del-badge">Tuesday</span><span class="del-title">Data Exploration and Preprocessing</span></div>
+      <div class="del-label">Tasks</div>
+      <ul class="del-list">
+        <li>Perform exploratory data analysis. Understand the dataset format, label structure, class balance, image dimensions, metadata, and available annotations.</li>
+        <li>Depending on the project, inspect formats such as DICOM, NIfTI, JPG/PNG, microscopy images, ultrasound images, mammograms, chest X-rays, k-space files, masks, bounding boxes, BI-RADS descriptors, or clinical labels.</li>
+        <li>Preprocess the data for model training. This may include resizing, normalization, cropping, lung/breast/cervix/tumor region preparation, mask conversion, bounding-box parsing, train-validation-test splitting, augmentation, or k-space preprocessing.</li>
+        <li>Transfer starter code from notebook format to reproducible Python scripts where needed. Begin running the baseline model in the assigned compute environment.</li>
+      </ul>
+      <div class="del-label">Exercise · 1-page report</div>
+      <ul class="del-list">
+        <li>Dataset structure and preprocessing steps completed</li>
+        <li>Data quality issues identified</li>
+        <li>Class imbalance or annotation issues</li>
+        <li>Any challenges faced in preparing or running the model</li>
+      </ul>
+      <a data-form="form-tue" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Tuesday Report</a>    </div>
+
+    <div id="del-wed" class="del-card" style="display:none">
+      <div class="del-header"><span class="del-badge">Wednesday</span><span class="del-title">Model Implementation and Initial Training</span></div>
+      <div class="del-label">Tasks</div>
+      <ul class="del-list">
+        <li>Train the chosen baseline model on the assigned project dataset. Ensure that the model objective matches the project endpoint:</li>
+        <li>Classification projects: define class-wise metrics and clinically important errors.</li>
+        <li>Segmentation projects: evaluate mask quality and boundary reliability.</li>
+        <li>Detection projects: evaluate localization, false positives, and false negatives.</li>
+        <li>Reconstruction projects: evaluate image fidelity and artifact behavior.</li>
+        <li>Triage projects: evaluate referral groups, uncertainty, and safety thresholds.</li>
+        <li>Explainability projects: evaluate whether attention is anatomically plausible.</li>
+        <li>Track training logs, validation curves, errors, and hardware/runtime issues.</li>
+      </ul>
+      <div class="del-label">Exercise · 1-page report</div>
+      <ul class="del-list">
+        <li>Initial or preliminary training results</li>
+        <li>Current performance metrics</li>
+        <li>Training challenges or code issues</li>
+        <li>Any early signs of model failure, overfitting, poor generalization, or unsafe predictions</li>
+      </ul>
+      <a data-form="form-wed" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Wednesday Report</a>    </div>
+
+    <div id="del-thu" class="del-card" style="display:none">
+      <div class="del-header"><span class="del-badge">Thursday</span><span class="del-title">Model Validation, Evaluation, and Failure Analysis</span></div>
+      <div class="del-label">Tasks</div>
+      <ul class="del-list">
+        <li>Continue training and validate the model on the assigned validation data.</li>
+        <li>Evaluate model performance using metrics appropriate to the project. Examples include accuracy, sensitivity, specificity, F1-score, AUROC, AUPRC, Dice score, Hausdorff distance, mAP, IoU, SSIM, PSNR, NRMSE, calibration error, uncertainty measures, false-negative rate, or subgroup performance.</li>
+        <li>Compare your results with the baseline paper, published result, reference implementation, or expected performance where available.</li>
+        <li>Perform project-specific failure analysis. Examples include: missed TB cases, dense-breast mammography failures, Type 3 cervix misclassification, malaria WBC false positives, ultrasound boundary errors, MRI missing-modality failure, low-field MRI reconstruction artifacts, or non-anatomical saliency/shortcut learning.</li>
+      </ul>
+      <div class="del-label">Exercise · 1-page report</div>
+      <ul class="del-list">
+        <li>Validation results</li>
+        <li>Key model deficiencies</li>
+        <li>Error or failure-mode analysis</li>
+        <li>Strategies to improve the model</li>
+        <li>Whether the model output appears clinically or scientifically trustworthy</li>
+      </ul>
+      <a data-form="form-thu" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Thursday Report</a>
+      <div class="del-label" style="margin-top:1rem;">Mid-training Survey</div>
+      <p style="font-size:13px;color:var(--gray-600);margin-bottom:0.75rem;">Each team member should complete the mid-training survey individually.</p>
+      <a href="#" class="submit-btn" style="background:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg data-form="survey-mid-training">Mid-training Survey</a>    </div>
+
+    <div id="del-fri" class="del-card" style="display:none">
+      <div class="del-header"><span class="del-badge">Friday</span><span class="del-title">Final Evaluation, Optimization, and Capstone Preparation</span></div>
+      <div class="del-label">Tasks</div>
+      <ul class="del-list">
+        <li>Finalize remaining model evaluation, plots, tables, confusion matrices, segmentation overlays, detection examples, reconstruction comparisons, uncertainty outputs, or saliency maps.</li>
+        <li>Prepare a concise interpretation of what worked, what failed, and what would be improved with more time.</li>
+        <li>Emphasize safe and honest reporting. Teams should not overclaim clinical diagnosis, lesion localization, or deployment readiness unless the dataset and labels support those claims.</li>
+      </ul>
+      <div class="del-label">Exercise: Capstone Presentation (5 min max, no more than 8 slides)</div>
+      <ul class="del-list">
+        <li>Project title and motivation</li>
+        <li>Dataset used and label/annotation structure</li>
+        <li>Why the model or method was chosen</li>
+        <li>Model architecture or workflow</li>
+        <li>Training and preprocessing strategy</li>
+        <li>Performance results and whether expected performance was replicated</li>
+        <li>Observed or suspected model deficiencies</li>
+        <li>Challenges faced during implementation</li>
+        <li>Safety, uncertainty, explainability, or deployment considerations</li>
+        <li>Proposed next-step model or project extension</li>
+      </ul>
+      <a data-form="form-fri-slides" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Capstone Slides</a>
+      <a data-form="form-fri-report" href="#" class="submit-btn" style="background:var(--black);margin-left:10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Final Report</a>    </div>
+  </div>
+</div>
+
+<!-- CAPSTONE -->
+<div class="section" id="capstone">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Capstone Project</span>
+      <span class="section-line"></span>
+    </div>
+    <div class="cap-card">
+      <div class="cap-header">
+        <h3>AIMed Hack 2026 · Capstone Challenge</h3>
+        <p>Apply deep learning to a real medical imaging challenge across Africa</p>
+      </div>
+      <div class="cap-body">
+        <p>Each team is assigned to a specific project, building, training, and evaluating models on their assigned dataset. Teams use Code Hack and Team Exercise sessions throughout the week to develop their solutions before presenting on Friday. Presentations are 5 minutes maximum with no more than 8 slides.</p>
+
+        <div class="del-label" style="margin-bottom:0.75rem;">Capstone Project Presentation</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-bottom:0.75rem;">Each team will deliver a 5-minute presentation summarizing the team's model implementation, performance, challenges, and lessons learned.</p>
+
+        <div class="del-label" style="margin-bottom:0.75rem;">Hybrid and Virtual Sites</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-bottom:1.25rem;">For hybrid and virtual sites, Code Hack and Team Exercise Sessions will take place through the program platform in Google Meet. Teams should use their assigned virtual meeting room or site-specific communication channel.</p>
+
+        <div class="del-label" style="margin-bottom:0.75rem;">Recommended Capstone Slide Structure</div>
+        <ul class="del-list" style="margin-bottom:1.5rem;">
+          <li><strong>Slide 1:</strong> Project title, team members, disease/domain, and clinical motivation</li>
+          <li><strong>Slide 2:</strong> Dataset description, labels, annotations, and task framing</li>
+          <li><strong>Slide 3:</strong> Model architecture or computational workflow</li>
+          <li><strong>Slide 4:</strong> Preprocessing and training strategy</li>
+          <li><strong>Slide 5:</strong> Main results and performance metrics</li>
+          <li><strong>Slide 6:</strong> Failure analysis, uncertainty, subgroup analysis, or explainability findings</li>
+          <li><strong>Slide 7:</strong> Challenges faced and lessons learned</li>
+          <li><strong>Slide 8:</strong> Proposed next step, improved model, or future challenge submission</li>
+        </ul>
+
+        <div class="del-label" style="margin-bottom:0.75rem;">General Team Expectations</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-bottom:0.5rem;">Each team should finish the week with:</p>
+        <ul class="del-list">
+          <li><strong>Project summary:</strong> Clear research question, dataset, and endpoint</li>
+          <li><strong>Working code:</strong> Reproducible baseline implementation or adapted starter code</li>
+          <li><strong>Data pipeline:</strong> Documented preprocessing and train/validation split</li>
+          <li><strong>Model results:</strong> Initial performance metrics and visual outputs where relevant</li>
+          <li><strong>Failure analysis:</strong> Description of model limitations and unsafe failure modes</li>
+          <li><strong>Capstone slides:</strong> 5-minute presentation with no more than 8 slides</li>
+          <li><strong>Next-step plan:</strong> Proposed model improvement, extension, or future submission pathway</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">SPARK <span>Academy</span></div>
+  <div class="footer-sub">Sprint AI Training for African Medical Imaging Knowledge Translation · 2026</div>
+  <div class="footer-links">
+    <a href="https://github.com/SPARK-Academy-2025/SPARK-2026" target="_blank">GitHub</a>
+    <a href="https://www.cameramriafrica.org/spark" target="_blank">Website</a>
+    <a href="https://www.cameramriafrica.org/contact" target="_blank">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// SPARK AIMed Hack 2026 — LINKS CONFIGURATION
+// Edit the values below to update all links across the page.
+// ============================================================
+
+const LINKS = {
+
+  // ── Recorded Session Video Links ────────────────────────
+  // Paste the video URL for each recorded session here.
+  // These will be applied to the clickable session titles.
+  recorded: {
+    mon: 'https://youtu.be/iC0YbfRTnxE?list=PLcel6GTnkOKue9_0FM03HlNvUUD2tQgij',   // Intro to Africa-BraTS Challenge and Dataset (Dr. Maruf Adewole)
+    tue: 'https://youtu.be/A3n8J2qXMKw?list=PLcel6GTnkOKue9_0FM03HlNvUUD2tQgij',   // Image Processing and Analysis of Brain Tumours (Dr. Maruf Adewole)
+    wed: 'https://youtu.be/V4wloiO8mcU?list=PLcel6GTnkOKtnV1Cce5m_pfhAlQjq0oha',   // AI Application to Neuroradiology and Neuro-oncology (Dr. Jeff Rudie)
+    thu: 'https://youtube.com/live/4PsFOelitFE',   // Imaging Physics and Radiobiology of Gliomas (Esin)
+  },
+
+  // ── Live Session Links ───────────────────────────────────
+  // One Zoom/Meet link per day. Same link used across all timezones.
+  live: {
+    mon: 'https://mcgill.zoom.us/j/85469781912?pwd=uSSWbrpZIAAg9C1kH8z81n7OGe5jvD.1',   // Monday Live: Grokking nnU-Net for Glioma Segmentation
+    tue: 'https://mcgill.zoom.us/j/85469781912?pwd=uSSWbrpZIAAg9C1kH8z81n7OGe5jvD.1',   // Tuesday Live: Uncertainty-Aware Breast Tumor Segmentation
+    wed: 'https://mcgill.zoom.us/j/85469781912?pwd=uSSWbrpZIAAg9C1kH8z81n7OGe5jvD.1',   // Wednesday Live: SharpXR — Structure-Aware Denoising for Pediatric Chest X-Rays
+    thu: 'https://mcgill.zoom.us/j/85469781912?pwd=uSSWbrpZIAAg9C1kH8z81n7OGe5jvD.1',   // Thursday Live Session
+    fri: 'https://mcgill.zoom.us/j/85469781912?pwd=uSSWbrpZIAAg9C1kH8z81n7OGe5jvD.1',   // Friday Live: State of AI in Brain Tumour (Dr. Evan Calabrese)
+  },
+
+  // ── Umoja Session Links ──────────────────────────────────
+  // Recorded video links for each Umoja session.
+  umoja: {
+    mon: 'https://youtube.com/live/QWFrsfA0lAY',   // Bioinformatics and Radiomics of Early Detection (Mercy Asiedu, William Wasswa)
+    tue: 'https://youtu.be/707L11ylJRQ?list=PLcel6GTnkOKue9_0FM03HlNvUUD2tQgij',   // Neuroradiology of Gliomas (Prof. Peter Hastreiter)
+    wed: 'https://youtube.com/live/gm0Vgz5Tro4',   // How to Write MICCAI Papers (Navodini Wijethilake, Sharib Ali, Esther Puyol)
+    thu: 'https://youtu.be/yjsX5lGzvUk?list=PLcel6GTnkOKue9_0FM03HlNvUUD2tQgij',   // Low-cost Method Deployment (Ayomide Oladele)
+    fri: 'https://youtu.be/_R_gZ7WMGUQ?list=PLcel6GTnkOKue9_0FM03HlNvUUD2tQgij',   // State of AI in Brain Tumour (Dr. Evan Calabrese)
+  },
+
+  // ── Daily Submission Form Links ──────────────────────────
+  // Google Form links for each day's report submission.
+  forms: {
+    mon:         'https://forms.gle/6aTAXRfsP4x8YA7P9',   // Monday daily report form
+    tue:         'https://forms.gle/7ES5wXHLTmLRxTmP7',   // Tuesday daily report form
+    wed:         'https://forms.gle/3KrAwJdAbyxREAMy9',   // Wednesday daily report form
+    thu:         'https://forms.gle/6rRqmxzqJjVzzyF49',   // Thursday daily report form
+    fri_slides:  'https://forms.gle/h3GZ2mJM1GoNj5EZ8',   // Friday capstone slides submission
+    fri_report:  'https://forms.gle/h3GZ2mJM1GoNj5EZ8',   // Friday final report submission
+  },
+
+  // ── Survey Links ─────────────────────────────────────────
+  mid_program: 'https://forms.gle/pTk5rS9ax6UvgkKW9',   // Mid-program evaluation survey (Monday)
+  mid_training: 'https://forms.gle/pTk5rS9ax6UvgkKW9',  // Mid-training survey (Thursday)
+
+};
+
+// ── Apply links to the page ──────────────────────────────────────────────────
+function applyLinks() {
+  // Recorded sessions — AM Seminar links across all tz tables
+  const days = ['mon','tue','wed','thu'];
+  days.forEach(day => {
+    document.querySelectorAll(`[data-recorded="${day}"]`).forEach(el => {
+      el.href = LINKS.recorded[day];
+    });
+  });
+
+  // Live session links
+  ['mon','tue','wed','thu','fri'].forEach(day => {
+    document.querySelectorAll(`[data-live="${day}"]`).forEach(el => {
+      el.href = LINKS.live[day];
+    });
+  });
+
+  // Umoja session links
+  ['mon','tue','wed','thu','fri'].forEach(day => {
+    document.querySelectorAll(`[data-umoja="${day}"]`).forEach(el => {
+      el.href = LINKS.umoja[day];
+    });
+  });
+
+  // Submission forms
+  const formMap = {
+    'form-mon': LINKS.forms.mon,
+    'form-tue': LINKS.forms.tue,
+    'form-wed': LINKS.forms.wed,
+    'form-thu': LINKS.forms.thu,
+    'form-fri-slides': LINKS.forms.fri_slides,
+    'form-fri-report': LINKS.forms.fri_report,
+    'survey-mid-program': LINKS.mid_program,
+    'survey-mid-training': LINKS.mid_training,
+  };
+  Object.entries(formMap).forEach(([key, url]) => {
+    document.querySelectorAll(`[data-form="${key}"]`).forEach(el => {
+      el.href = url;
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', applyLinks);
+
+// ============================================================
+
+const TZ_META = [
+  { name: 'Greenwich Mean Time (GMT, UTC+0)', live: '8:00 AM GMT' },
+  { name: 'West Africa Time (WAT, UTC+1)',    live: '9:00 AM WAT' },
+  { name: 'Central Africa Time (CAT, UTC+2)', live: '10:00 AM CAT' },
+  { name: 'East Africa Time (EAT, UTC+3)',    live: '11:00 AM EAT' },
+  { name: 'Nepal Time (NPT, UTC+5:45)',        live: '1:45 PM NPT' },
+];
+let currentTZ = 0, currentDay = 'mon';
+const DAYS = ['mon','tue','wed','thu','fri'];
+
+function hideAll() {
+  for (let t = 0; t < 5; t++)
+    for (const d of DAYS) {
+      const el = document.getElementById('sched-'+t+'-'+d);
+      if (el) el.style.display = 'none';
+    }
+}
+
+function selectTZ(idx, btn) {
+  currentTZ = idx;
+  document.querySelectorAll('.tz-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tz-banner-name').textContent = TZ_META[idx].name;
+  document.getElementById('tz-live-time').textContent = TZ_META[idx].live;
+  hideAll();
+  const el = document.getElementById('sched-'+idx+'-'+currentDay);
+  if (el) el.style.display = 'block';
+}
+
+function showDay(day, btn) {
+  currentDay = day;
+  btn.closest('.day-tabs').querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  hideAll();
+  const el = document.getElementById('sched-'+currentTZ+'-'+day);
+  if (el) el.style.display = 'block';
+}
+
+function showDel(day, btn) {
+  DAYS.forEach(d => {
+    const el = document.getElementById('del-'+d);
+    if (el) el.style.display = d === day ? 'block' : 'none';
+  });
+  btn.closest('.day-tabs').querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setNav(el) {
+  document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  ['schedule','deliverables','capstone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+  });
+});
+</script>
+</body>
+</html>
