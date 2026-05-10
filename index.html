@@ -803,7 +803,7 @@ footer{background:var(--black);padding:2.5rem 2rem;text-align:center;}
         <li>Safety, uncertainty, explainability, or deployment considerations</li>
         <li>Proposed next-step model or project extension</li>
       </ul>
-     <a data-form="form-fri" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Capstone Presentation and Report</a>
+      <a data-form="form-fri" href="#" class="submit-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Submit Capstone Presentation and Report</a>    </div>
   </div>
 </div>
 
@@ -906,12 +906,12 @@ const LINKS = {
 
   // ── Daily Submission Form Links ──────────────────────────
   // Google Form links for each day's report submission.
-   forms: {
+  forms: {
     mon:         'https://forms.gle/6aTAXRfsP4x8YA7P9',   // Monday daily report form
     tue:         'https://forms.gle/7ES5wXHLTmLRxTmP7',   // Tuesday daily report form
     wed:         'https://forms.gle/3KrAwJdAbyxREAMy9',   // Wednesday daily report form
     thu:         'https://forms.gle/6rRqmxzqJjVzzyF49',   // Thursday daily report form
-    fri:          'https://forms.gle/h3GZ2mJM1GoNj5EZ8',   // Friday capstone slides submission
+    fri:  'https://forms.gle/h3GZ2mJM1GoNj5EZ8',   // Friday capstone slides submission
   },
 
   // ── Survey Links ─────────────────────────────────────────
@@ -950,8 +950,7 @@ function applyLinks() {
     'form-tue': LINKS.forms.tue,
     'form-wed': LINKS.forms.wed,
     'form-thu': LINKS.forms.thu,
-    'form-fri-slides': LINKS.forms.fri_slides,
-    'form-fri-report': LINKS.forms.fri_report,
+    'form-fri': LINKS.forms.fri,
     'survey-mid-program': LINKS.mid_program,
     'survey-mid-training': LINKS.mid_training,
   };
